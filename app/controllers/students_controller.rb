@@ -16,12 +16,18 @@ class StudentsController < ApplicationController
     @student = Student.find(params[:id])
   end
 
+  def update
+    @student = Student.find(params[:id])
+    @student.update(student_params)
+    redirect_to student_path(@student)
+  end
+
   def show
     @student = Student.find(params[:id])
   end
 
   def index
-    @students = Student.all
+    @students = Student.search(params[:query])
   end
 
   def student_params
